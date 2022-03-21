@@ -23,6 +23,8 @@ namespace LaytonTempleScheduler.Controllers
 
         public IActionResult Index()
         {
+            
+            //ViewBag.timeSlots = _service.timeSlots.Where(t => t.Start.Date == mydateparameter).OrderBy(t => t.Start);
             return View();
         }
 

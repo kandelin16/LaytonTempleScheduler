@@ -33,6 +33,7 @@ namespace LaytonTempleScheduler
                 options.UseSqlite(Configuration["ConnectionStrings:SchedulerDB"]);
             });
             services.AddScoped<ISchedulerRepository, SchedulerRepository>();
+            Settings.ConnectionString = Configuration["ConnectionStrings:SchedulerDB"];
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,10 +62,29 @@ namespace LaytonTempleScheduler
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            //var context = new SchedulerContext();
-            //context.TimeSlots.RemoveRange(context.TimeSlots);
-            //DateTime today = DateTime.Today.Date;
-            //DateTime target = DateTime.
+           
+
+            using (var context = new SchedulerContext())
+            {
+                context.TimeSlots.RemoveRange(context.TimeSlots);
+                DateTime today = DateTime.Today.Date;
+                DateTime target = DateTime.Today.AddDays(90).Date;
+                int[] hours = new int[] { 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+
+                while (today.Date != target.Date)
+                {
+                    foreach (var hour in hours)
+                    {
+                        TimeSlot temp = new TimeSlot();
+                        temp.Available = true;
+                        temp.Start = today.AddHours(hour);
+                        context.Add(temp);
+                    }
+                    today = today.AddDays(1).AddHours(-20);
+                    context.SaveChanges();
+                }
+            }
+
         }
     }
 }
