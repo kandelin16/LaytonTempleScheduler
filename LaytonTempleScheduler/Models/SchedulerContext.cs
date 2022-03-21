@@ -17,8 +17,20 @@ namespace LaytonTempleScheduler.Models
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlite(Settings.ConnectionString);
+            }
+        }
+
         public DbSet<TimeSlot> TimeSlots { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 
+    }
+    public static class Settings
+    {
+        public static string ConnectionString { get; set; }
     }
 }
