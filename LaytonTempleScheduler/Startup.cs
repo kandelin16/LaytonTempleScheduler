@@ -1,6 +1,9 @@
+using LaytonTempleScheduler.DataAccess;
+using LaytonTempleScheduler.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +27,12 @@ namespace LaytonTempleScheduler
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<SchedulerContext>(options =>
+            {
+                options.UseSqlite(Configuration["ConnectionStrings:SchedulerDB"]);
+            });
+            services.AddScoped<ISchedulerRepository, SchedulerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +61,10 @@ namespace LaytonTempleScheduler
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            //var context = new SchedulerContext();
+            //context.TimeSlots.RemoveRange(context.TimeSlots);
+            //DateTime today = DateTime.Today.Date;
+            //DateTime target = DateTime.
         }
     }
 }

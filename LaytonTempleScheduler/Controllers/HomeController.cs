@@ -1,4 +1,5 @@
-﻿using LaytonTempleScheduler.Models;
+﻿using LaytonTempleScheduler.DataAccess;
+using LaytonTempleScheduler.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,10 +13,12 @@ namespace LaytonTempleScheduler.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private ISchedulerRepository _service { get; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ISchedulerRepository temp)
         {
             _logger = logger;
+            _service = temp;
         }
 
         public IActionResult Index()
