@@ -15,21 +15,25 @@ namespace LaytonTempleScheduler.Controllers
         private readonly ILogger<HomeController> _logger;
         private ISchedulerRepository _service { get; }
 
+       
+
         public HomeController(ILogger<HomeController> logger, ISchedulerRepository temp)
         {
             _logger = logger;
             _service = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int mydateparamater)
         {
-            
-            //ViewBag.timeSlots = _service.timeSlots.Where(t => t.Start.Date == mydateparameter).OrderBy(t => t.Start);
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult SignUp()
         {
+
+            ViewBag.startDate = _service.timeSlots
+                .OrderBy(t => t.Start);
+            //ViewBag.timeSlots = _service.timeSlots.Where(t => t.Start.Date == mydateparameter).OrderBy(t => t.Start);
             return View();
         }
 
