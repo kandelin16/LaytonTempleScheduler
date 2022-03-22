@@ -1,0 +1,31 @@
+﻿@{
+}
+
+@model Appointment
+
+<h2>Please enter the details below to confirm your appointment</h2>
+
+<form method="post" asp-action="Appointment">
+    <div asp-validation-summary="All" class="text-danger">
+
+        <div class="form-group">
+            <label asp-for="NameOfGroup">Group Name:</label>
+            <input asp-for="NameOfGroup" />
+        </div>
+        <div class="form-group">
+            <label asp-for="GroupSize">Group Size:</label>
+            <input asp-for="GroupSize" />
+        </div>
+        <div class="form-group">
+            <label asp-for="emailAddress">Email Address:</label>
+            <input asp-for="emailAddress" />
+        </div>
+        <div class="form-group">
+            <label asp-for="phoneNumber">Phone Number:</label>
+            <input asp-for="phoneNumber" />
+        </div>
+
+    </div>
+
+
+</form>
