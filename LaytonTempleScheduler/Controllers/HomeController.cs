@@ -56,6 +56,7 @@ namespace LaytonTempleScheduler.Controllers
         [HttpGet]
         public IActionResult Appointment(string startDate)
         {
+            ViewBag.TimeSlot = startDate;
 
             return View();
         }
