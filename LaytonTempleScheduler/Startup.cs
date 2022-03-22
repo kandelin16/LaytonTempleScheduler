@@ -68,7 +68,7 @@ namespace LaytonTempleScheduler
             {
                 context.TimeSlots.RemoveRange(context.TimeSlots);
                 DateTime today = DateTime.Today.Date;
-                DateTime target = DateTime.Today.AddDays(90).Date;
+                DateTime target = DateTime.Today.AddDays(5).Date; //change this to 90 days when we turn it in.
                 int[] hours = new int[] { 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 
                 while (today.Date != target.Date)

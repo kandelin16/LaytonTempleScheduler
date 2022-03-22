@@ -28,16 +28,22 @@ namespace LaytonTempleScheduler.Controllers
             return View();
         }
 
-        public IActionResult SignUp()
+        public IActionResult SignUp(string selectedDate = "")
         {
+            DateTime selected;
+            if (selectedDate == "" )
+            {
+                selected = DateTime.Today;
+            }
+            else
+            {
+                selected = DateTime.Parse(selectedDate);
+            }
+            List<TimeSlot> timeSlotsToDisplay = _service.timeSlots.Where(t => t.Start.Date == selected.Date).OrderBy(t => t.Start).ToList();
 
-            ViewBag.startDate = _service.timeSlots
-                //.Where(x =>x.TimeSlotID == timeslotId)
-                //.OrderBy(t => t.Start);
-                .FirstOrDefault();
-               
-                
-            //ViewBag.timeSlots = _service.timeSlots.Where(t => t.Start.Date == mydateparameter).OrderBy(t => t.Start);
+            ViewBag.selectedDate = selected.ToShortDateString();
+            ViewBag.timeSlots = timeSlotsToDisplay;
+
             return View( );
         }
 
