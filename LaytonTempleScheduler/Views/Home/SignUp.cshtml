@@ -11,21 +11,18 @@
 
 @*<input type="hidden" name="timeslotID" value="@Model.TimeSlotID" />*@
 
-<input value="@ViewBag.startDate.Start.Date" />
+<form asp-controller="Home" asp-action="SignUp" method="post">
+    <input value="@ViewBag.selectedDate" type="date" name="selectedDate"/>
+</form>
+
+
 
 <!--Supposed to print the appointment times-->
 
-@*@foreach (ViewBag.startDate.Start.Hour in ViewBag.startDate)
+@foreach (var timeSlot in ViewBag.timeSlots)
 {
-    @if (ViewBag.startDate.Start.Hour > 8 & ViewBag.startDate.Start.Hour <= 12)
-    {
-        <input type="button" value="@ViewBag.startDate.Start.Hour AM" />
-    }
-    else if (ViewBag.startDate.Start.Hour > 12)
-    {
-        <input type="button" value="@(ViewBag.startDate.Start.Hour - 12) PM" />
-    }
-}*@
+    <p>@timeSlot.Start</p>
+} 
 
 <button>Next</button>
 
