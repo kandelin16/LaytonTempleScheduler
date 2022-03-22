@@ -1,0 +1,51 @@
+﻿
+@*@{
+    public string GetEditUrl(long id) => $"/admin/projects/edit/{id}";
+
+    public async Task RemoveProject(Appointment i)
+    {
+        _service.DeleteAppointment(i);
+        await UpdateData();
+    }
+}*@
+
+
+@page
+@model LaytonTempleScheduler.Models.Appointment
+
+
+<h2>Appointments</h2>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Group Name</th>
+            <th>Group Size</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var i in ViewBag.appointments)
+        {
+            <tr>
+                <td>@i.TimeSlot.Start</td>
+                <td>@i.Appointment.NameOfGroup</td>
+                <td>@i.Appointment.GroupSize</td>
+                <td>@i.Appointment.emailAddress</td>
+                <td>@i.phoneNumber</td>
+                <td>
+                    <NavLink class="btn btn-warning btn-sm" href="/Home/Edit">Edit</NavLink>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

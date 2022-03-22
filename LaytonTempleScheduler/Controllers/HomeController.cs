@@ -15,7 +15,7 @@ namespace LaytonTempleScheduler.Controllers
         private readonly ILogger<HomeController> _logger;
         private ISchedulerRepository _service { get; }
 
-       
+
 
         public HomeController(ILogger<HomeController> logger, ISchedulerRepository temp)
         {
@@ -31,7 +31,7 @@ namespace LaytonTempleScheduler.Controllers
         public IActionResult SignUp(string selectedDate = "")
         {
             DateTime selected;
-            if (selectedDate == "" )
+            if (selectedDate == "")
             {
                 selected = DateTime.Today;
             }
@@ -44,7 +44,7 @@ namespace LaytonTempleScheduler.Controllers
             ViewBag.selectedDate = selected.ToShortDateString();
             ViewBag.timeSlots = timeSlotsToDisplay;
 
-            return View( );
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -63,6 +63,13 @@ namespace LaytonTempleScheduler.Controllers
         public IActionResult Appointment(Appointment a)
         {
             return View("Confirmation");
+        }
+
+        public IActionResult ViewAppointments()
+        {
+            var appointments = _service.appointments.ToList();
+            ViewBag.appointments = appointments;
+            return View();
         }
     }
 }
