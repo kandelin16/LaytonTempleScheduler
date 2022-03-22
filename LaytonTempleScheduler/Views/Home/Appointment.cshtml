@@ -9,23 +9,26 @@
     <div asp-validation-summary="All">
 
        
-        
+        <div class="form-group">
+            <label asp-for="TimeSlot">Timeslot:</label>
+            <input value="@ViewBag.TimeSlot" readonly/>
+        </div>
 
         <div class="form-group">
             <label asp-for="NameOfGroup">Group Name:</label>
-            <input asp-for="NameOfGroup" />
+            <input asp-for="NameOfGroup" required/>
         </div>
         <div class="form-group">
             <label asp-for="GroupSize">Group Size:</label>
-            <input asp-for="GroupSize" />
+            <input asp-for="GroupSize" required/>
         </div>
         <div class="form-group">
             <label asp-for="emailAddress">Email Address:</label>
-            <input asp-for="emailAddress" />
+            <input asp-for="emailAddress" required/>
         </div>
         <div class="form-group">
             <label asp-for="phoneNumber">Phone Number:</label>
-            <input asp-for="phoneNumber" />
+            <input asp-for="phoneNumber" required/>
         </div>
 
     </div>
