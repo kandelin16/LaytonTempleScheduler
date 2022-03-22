@@ -20,7 +20,11 @@
 <div class="form-group">
     @foreach (var timeSlot in ViewBag.timeSlots)
     {
-        <button class="form-control btn btn-primary mb-2" asp-controller="Home" asp-action="Appointment">@timeSlot.Start.ToString("h:mm tt")</button> <br />
+    <form method="get" asp-controller="Home" asp-action="Appointment">
+        <button  type="submit" class="form-control btn btn-primary mb-2">@timeSlot.Start.ToString("h:mm tt")</button> <br />
+        <input type="hidden" name="startDate" value="@timeSlot.Start" />
+    </form>
+        
     }
 </div>
 
