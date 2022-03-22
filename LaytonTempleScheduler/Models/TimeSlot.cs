@@ -10,7 +10,6 @@ namespace LaytonTempleScheduler.Models
     {
         [Key]
         [Required]
-        public int TimeSlotID { get; set; }
         public DateTime Start { get; set; }
         public bool Available { get; set; }
     }

@@ -80,7 +80,7 @@ namespace LaytonTempleScheduler
                         temp.Start = today.AddHours(hour);
                         context.Add(temp);
                     }
-                    today = today.AddDays(1).AddHours(-20);
+                    today = today.AddDays(1);
                     context.SaveChanges();
                 }
             }

@@ -54,8 +54,9 @@ namespace LaytonTempleScheduler.Controllers
         }
 
         [HttpGet]
-        public IActionResult Appointment()
+        public IActionResult Appointment(string startDate)
         {
+
             return View();
         }
 
