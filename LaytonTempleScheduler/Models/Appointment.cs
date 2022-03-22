@@ -11,7 +11,7 @@ namespace LaytonTempleScheduler.Models
         [Key]
         [Required]
         public int AppointmentID { get; set; }
-        public int TimeSlotID { get; set; }
+        public DateTime TimeSlotStart { get; set; }
         public TimeSlot TimeSlot { get; set; }
 
         [Required(ErrorMessage = "Please enter a group name")]

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LaytonTempleScheduler.Migrations
 {
     [DbContext(typeof(SchedulerContext))]
-    [Migration("20220321202253_Initial")]
-    partial class Initial
+    [Migration("20220322214436_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,37 +28,36 @@ namespace LaytonTempleScheduler.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("NameOfGroup")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TimeSlotID")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("TimeSlotStart")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("emailAddress")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("phoneNumber")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("AppointmentID");
 
-                    b.HasIndex("TimeSlotID");
+                    b.HasIndex("TimeSlotStart");
 
                     b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("LaytonTempleScheduler.Models.TimeSlot", b =>
                 {
-                    b.Property<int>("TimeSlotID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Available")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("Start")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("TimeSlotID");
+                    b.HasKey("Start");
 
                     b.ToTable("TimeSlots");
                 });
@@ -67,7 +66,7 @@ namespace LaytonTempleScheduler.Migrations
                 {
                     b.HasOne("LaytonTempleScheduler.Models.TimeSlot", "TimeSlot")
                         .WithMany()
-                        .HasForeignKey("TimeSlotID")
+                        .HasForeignKey("TimeSlotStart")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LaytonTempleScheduler.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,14 +11,12 @@ namespace LaytonTempleScheduler.Migrations
                 name: "TimeSlots",
                 columns: table => new
                 {
-                    TimeSlotID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
                     Start = table.Column<DateTime>(nullable: false),
                     Available = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TimeSlots", x => x.TimeSlotID);
+                    table.PrimaryKey("PK_TimeSlots", x => x.Start);
                 });
 
             migrationBuilder.CreateTable(
@@ -27,27 +25,27 @@ namespace LaytonTempleScheduler.Migrations
                 {
                     AppointmentID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TimeSlotID = table.Column<int>(nullable: false),
-                    NameOfGroup = table.Column<string>(nullable: true),
+                    TimeSlotStart = table.Column<DateTime>(nullable: false),
+                    NameOfGroup = table.Column<string>(nullable: false),
                     GroupSize = table.Column<int>(nullable: false),
-                    emailAddress = table.Column<string>(nullable: true),
-                    phoneNumber = table.Column<string>(nullable: true)
+                    emailAddress = table.Column<string>(nullable: false),
+                    phoneNumber = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Appointments", x => x.AppointmentID);
                     table.ForeignKey(
-                        name: "FK_Appointments_TimeSlots_TimeSlotID",
-                        column: x => x.TimeSlotID,
+                        name: "FK_Appointments_TimeSlots_TimeSlotStart",
+                        column: x => x.TimeSlotStart,
                         principalTable: "TimeSlots",
-                        principalColumn: "TimeSlotID",
+                        principalColumn: "Start",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Appointments_TimeSlotID",
+                name: "IX_Appointments_TimeSlotStart",
                 table: "Appointments",
-                column: "TimeSlotID");
+                column: "TimeSlotStart");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
