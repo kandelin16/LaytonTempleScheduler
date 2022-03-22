@@ -7,24 +7,31 @@
 @model TimeSlot
 
 <p> Select a Date</p>
-
-@foreach (var i in ViewBag.startDate)
-{
-    <input value="@i.Start.Date.Month/@i.Start.Date.Day/@i.Start.Date.Year" /> <br />
-
-    @if (i.Start.Hour > 8 & i.Start.Hour <= 12)
-    {
-        <input type="button" value="@i.Start.Hour AM" />
-    }
-    else if (i.Start.Hour > 12)
-    {
-        <input type="button" value="@(i.Start.Hour - 12) PM" />
-    }
-
-}
-
-
 <button>Previous</button>
+
+@*<input type="hidden" name="timeslotID" value="@Model.TimeSlotID" />*@
+
+<input value="@ViewBag.startDate.Start.Date" />
+
+<!--Supposed to print the appointment times-->
+
+@*@foreach (ViewBag.startDate.Start.Hour in ViewBag.startDate)
+{
+    @if (ViewBag.startDate.Start.Hour > 8 & ViewBag.startDate.Start.Hour <= 12)
+    {
+        <input type="button" value="@ViewBag.startDate.Start.Hour AM" />
+    }
+    else if (ViewBag.startDate.Start.Hour > 12)
+    {
+        <input type="button" value="@(ViewBag.startDate.Start.Hour - 12) PM" />
+    }
+}*@
+
+<button>Next</button>
+
+
+
+
 
 
 

@@ -32,9 +32,13 @@ namespace LaytonTempleScheduler.Controllers
         {
 
             ViewBag.startDate = _service.timeSlots
-                .OrderBy(t => t.Start);
+                //.Where(x =>x.TimeSlotID == timeslotId)
+                //.OrderBy(t => t.Start);
+                .FirstOrDefault();
+               
+                
             //ViewBag.timeSlots = _service.timeSlots.Where(t => t.Start.Date == mydateparameter).OrderBy(t => t.Start);
-            return View();
+            return View( );
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
