@@ -6,25 +6,25 @@
 }
 @model TimeSlot
 
-<p> Select a Date</p>
-<button>Previous</button>
+<p class="font-weight-bold text-center"> Select a Date</p>
 
 @*<input type="hidden" name="timeslotID" value="@Model.TimeSlotID" />*@
 
-<form asp-controller="Home" asp-action="SignUp" method="post">
+<form class ="text-center" asp-controller="Home" asp-action="SignUp" method="post">
     <input value="@ViewBag.selectedDate" type="date" name="selectedDate"/>
 </form>
 
-
+<br />
 
 <!--Supposed to print the appointment times-->
+<div class="form-group">
+    @foreach (var timeSlot in ViewBag.timeSlots)
+    {
+        <button class="form-control btn btn-primary mb-2" asp-controller="Home" asp-action="Appointment">@timeSlot.Start.ToString("h:mm tt")</button> <br />
+    }
+</div>
 
-@foreach (var timeSlot in ViewBag.timeSlots)
-{
-    <p>@timeSlot.Start</p>
-} 
-
-<button>Next</button>
+@*<input type="hidden" value="@ViewBag.timeSlots.TimeSlotID" />*@
 
 
 
