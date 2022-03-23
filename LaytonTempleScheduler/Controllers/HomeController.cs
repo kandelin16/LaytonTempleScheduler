@@ -29,6 +29,8 @@ namespace LaytonTempleScheduler.Controllers
             return View();
         }
 
+        //Prepares the SignUp.cshtml page. 
+        //Parameter: selectedDate is the date the user wishes to see timeslots for, or the current date if nothing is selected
         public IActionResult SignUp(string selectedDate = "")
         {
             DateTime selected;
@@ -54,6 +56,8 @@ namespace LaytonTempleScheduler.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        //This is called when a time slot is selected, and a user goes to a form to reserve an appointment
+        //Parameter: startDate is the datetime of the selected timeslot. 
         [HttpGet]
         public IActionResult Appointment(string startDate)
         {
@@ -62,6 +66,9 @@ namespace LaytonTempleScheduler.Controllers
             return View();
         }
 
+        //This post method is called when a new appointment is created.
+        //Parameter: a is an appointment object
+        //Parameter: timeslotstart is a string of the date time of the timeslot
         [HttpPost]
         public IActionResult Appointment(Appointment a, string timeSlotStart)
         {
@@ -75,10 +82,6 @@ namespace LaytonTempleScheduler.Controllers
         public IActionResult ViewAppointments()
         {
             List<Appointment> temp = _service.appointments.ToList();
-            //foreach (Appointment app in temp)
-            //{
-            //    app.TimeSlot = _service.timeSlots.FirstOrDefault(t => t.Start == )
-            //}
             ViewBag.appointments = temp;
             return View();
         }
