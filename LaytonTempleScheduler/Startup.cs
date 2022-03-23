@@ -76,8 +76,16 @@ namespace LaytonTempleScheduler
                     foreach (var hour in hours)
                     {
                         TimeSlot temp = new TimeSlot();
-                        temp.Available = true;
                         temp.Start = today.AddHours(hour);
+                        Appointment tempAppointment = context.Appointments.Where(a => a.TimeSlotStart == temp.Start).FirstOrDefault();
+                        if (tempAppointment == null)
+                        {
+                            temp.Available = true;
+                        }
+                        else
+                        {
+                            temp.Available = false;
+                        }
                         context.Add(temp);
                     }
                     today = today.AddDays(1);
