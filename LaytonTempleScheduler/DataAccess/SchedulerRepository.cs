@@ -48,7 +48,6 @@ namespace LaytonTempleScheduler.DataAccess
             temp.Available = true;
             _context.Appointments.Remove(app);
             _context.SaveChanges();
-
         }
     }
 }
