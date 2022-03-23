@@ -19,14 +19,14 @@
     <tbody>
         @foreach (var app in ViewBag.appointments)
         {
-            <tr>
-                <td>@app.NameOfGroup</td>
-                <td>@app.GroupSize</td>
-                <td>@app.TimeSlotStart</td>
-                <td>@app.emailAddress</td>
-                <td>@app.phoneNumber</td>
-                <td><input type="button" class="btn btn-primary" value="Edit" onclick="displayRow(@app.AppointmentID);"/><input type="button" value="❌" onclick="deleteApp(@app.AppointmentID);"/></td>
-            </tr>
+        <tr>
+            <td>@app.NameOfGroup</td>
+            <td>@app.GroupSize</td>
+            <td>@app.TimeSlotStart</td>
+            <td>@app.emailAddress</td>
+            <td>@app.phoneNumber</td>
+            <td><input type="button" class="btn btn-primary" value="Edit" onclick="displayRow(@app.AppointmentID);" /><form asp-controller="Home" asp-action="deleteApp"><input type="hidden" value="@app.AppointmentID" name="AppointmentID" /><input type="submit" value="❌" /></form></td>
+        </tr>
             <tr hidden id="hidden@(app.AppointmentID)">
                 <td colspan="6">
                     <div class="editAppHolder">

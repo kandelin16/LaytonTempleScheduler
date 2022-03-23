@@ -94,5 +94,11 @@ namespace LaytonTempleScheduler.Controllers
 
             return RedirectToAction("ViewAppointments");
         }
+        public IActionResult deleteApp(int AppointmentID)
+        {
+            Appointment temp = _service.appointments.FirstOrDefault(x => x.AppointmentID == AppointmentID);
+            _service.RemoveAppointment(temp);
+            return RedirectToAction("ViewAppointments");
+        }
     }
 }

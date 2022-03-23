@@ -41,5 +41,12 @@ namespace LaytonTempleScheduler.DataAccess
             match.emailAddress = app.emailAddress;
             _context.SaveChanges();
         }
+
+        public void RemoveAppointment(Appointment app)
+        {
+            _context.Appointments.Remove(app);
+            _context.SaveChanges();
+
+        }
     }
 }

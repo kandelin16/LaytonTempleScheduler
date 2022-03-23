@@ -14,5 +14,6 @@ namespace LaytonTempleScheduler.DataAccess
         void AddAppointment(Appointment temp);
         void ReserveTimeSlot(TimeSlot temp);
         void UpdateAppointment(Appointment app);
+        void RemoveAppointment(Appointment app);
     }
 }
