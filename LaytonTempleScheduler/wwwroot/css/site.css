@@ -69,3 +69,23 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+.editAppointmentForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-holder {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-edit {
+    margin-top: 1.5rem;
+}
+
+.table-striped tbody tr:nth-child(4n + 1) {
+    background-color: rgba(0,0,0,.05);
+}

@@ -11,5 +11,8 @@ namespace LaytonTempleScheduler.DataAccess
         IQueryable<Appointment> appointments { get;  }
         IQueryable<TimeSlot> timeSlots { get;  }
         void InitializeTimeSlots();
+        void AddAppointment(Appointment temp);
+        void ReserveTimeSlot(TimeSlot temp);
+        void UpdateAppointment(Appointment app);
     }
 }

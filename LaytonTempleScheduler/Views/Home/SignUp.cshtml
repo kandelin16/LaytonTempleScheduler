@@ -20,20 +20,18 @@
 <div class="form-group">
     @foreach (var timeSlot in ViewBag.timeSlots)
     {
-    <form method="get" asp-controller="Home" asp-action="Appointment">
-        <button  type="submit" class="form-control btn btn-primary mb-2">@timeSlot.Start.ToString("h:mm tt")</button> <br />
-        <input type="hidden" name="startDate" value="@timeSlot.Start" />
-    </form>
-        
+        @if (timeSlot.Available)
+        {
+            <form method="get" asp-controller="Home" asp-action="Appointment">
+                <button type="submit" class="form-control btn btn-primary mb-2">@timeSlot.Start.ToString("h:mm tt")</button> <br />
+                <input type="hidden" name="startDate" value="@timeSlot.Start" />
+            </form>
+        }
+        else
+        {
+            <button type="button" class="form-control btn btn-secondary mb-2" disabled>@timeSlot.Start.ToString("h:mm tt")</button> <br />
+        }
     }
 </div>
 
 @*<input type="hidden" value="@ViewBag.timeSlots.TimeSlotID" />*@
-
-
-
-
-
-
-
-
