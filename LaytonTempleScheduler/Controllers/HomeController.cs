@@ -65,11 +65,18 @@ namespace LaytonTempleScheduler.Controllers
         [HttpPost]
         public IActionResult Appointment(Appointment a, string timeSlotStart)
         {
+            if (ModelState.IsValid) { 
             TimeSlot temp = _service.timeSlots.Where(t => t.Start == DateTime.Parse(timeSlotStart)).First();
             _service.ReserveTimeSlot(temp);
             //a.TimeSlot = temp;
             _service.AddAppointment(a);
             return View("Confirmation");
+        }
+            else
+            {
+                ViewBag.TimeSlot = timeSlotStart;
+                return View();
+            }
         }
 
         public IActionResult ViewAppointments()

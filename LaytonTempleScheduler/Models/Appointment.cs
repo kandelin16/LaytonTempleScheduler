@@ -17,13 +17,14 @@ namespace LaytonTempleScheduler.Models
         [Required(ErrorMessage = "Please enter a group name")]
         public string NameOfGroup { get; set; }
 
-        [Required(ErrorMessage = "Please enter a group size")]
+        [Required]
+        [Range(1,15,ErrorMessage = "Please enter a group size between 1-15")]
         public int GroupSize { get; set; }
 
         [Required(ErrorMessage = "Please enter your email address")]
         public string emailAddress { get; set; }
 
-        [Required(ErrorMessage = "Please enter your phone number")]
+        
         public string phoneNumber { get; set; }
     }
 }

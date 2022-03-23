@@ -13,7 +13,8 @@
             <th>Start Time</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Edit/Delete</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +26,15 @@
             <td>@app.TimeSlotStart</td>
             <td>@app.emailAddress</td>
             <td>@app.phoneNumber</td>
-            <td><input type="button" class="btn btn-primary" value="Edit" onclick="displayRow(@app.AppointmentID);" /><form asp-controller="Home" asp-action="deleteApp"><input type="hidden" value="@app.AppointmentID" name="AppointmentID" /><input type="submit" value="❌" /></form></td>
+
+            <td><input type="button" class="btn btn-primary" value="Edit" onclick="displayRow(@app.AppointmentID);" /></td>
+          
+            <td>
+                <form asp-controller="Home" asp-action="deleteApp">
+
+                    <input type="hidden" value="@app.AppointmentID" name="AppointmentID" /><input type="submit" value="❌" />
+                </form>
+            </td>
         </tr>
             <tr hidden id="hidden@(app.AppointmentID)">
                 <td colspan="6">
