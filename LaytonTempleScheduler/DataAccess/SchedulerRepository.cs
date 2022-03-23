@@ -44,6 +44,8 @@ namespace LaytonTempleScheduler.DataAccess
 
         public void RemoveAppointment(Appointment app)
         {
+            TimeSlot temp = _context.TimeSlots.FirstOrDefault(t => t.Start == app.TimeSlotStart);
+            temp.Available = true;
             _context.Appointments.Remove(app);
             _context.SaveChanges();
 
