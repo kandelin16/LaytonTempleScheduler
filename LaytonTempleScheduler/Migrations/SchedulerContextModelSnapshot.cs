@@ -42,8 +42,6 @@ namespace LaytonTempleScheduler.Migrations
 
                     b.HasKey("AppointmentID");
 
-                    b.HasIndex("TimeSlotStart");
-
                     b.ToTable("Appointments");
                 });
 
@@ -58,15 +56,6 @@ namespace LaytonTempleScheduler.Migrations
                     b.HasKey("Start");
 
                     b.ToTable("TimeSlots");
-                });
-
-            modelBuilder.Entity("LaytonTempleScheduler.Models.Appointment", b =>
-                {
-                    b.HasOne("LaytonTempleScheduler.Models.TimeSlot", "TimeSlot")
-                        .WithMany()
-                        .HasForeignKey("TimeSlotStart")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
