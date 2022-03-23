@@ -1,4 +1,5 @@
 ﻿@{
+    ViewData["Title"] = "Appointment Form";
 }
 @model Appointment
 
@@ -8,34 +9,35 @@
 <form method="post" asp-action="Appointment">
     <div asp-validation-summary="All">
 
-       
-        <div class="form-group">
-            <label for="timeSlotStart">Timeslot:</label>
-            <input value="@ViewBag.TimeSlot" name="timeSlotStart" readonly/>
-        </div>
 
         <div class="form-group">
+            <label for="timeSlotStart">Timeslot:</label>
+            <input value="@ViewBag.TimeSlot" name="timeSlotStart" readonly />
+        </div>
+        <div class="form-group">
             <label asp-for="NameOfGroup">Group Name:</label>
-            <input asp-for="NameOfGroup" required/>
+            <input asp-for="NameOfGroup" align="bottom" required />
         </div>
         <div class="form-group">
             <label asp-for="GroupSize">Group Size:</label>
-            <input asp-for="GroupSize" required/>
+            <input asp-for="GroupSize" align="bottom" required />
         </div>
         <div class="form-group">
+
             <label asp-for="emailAddress">Email Address:</label>
-            <input asp-for="emailAddress" required/>
+            <input asp-for="emailAddress" align="bottom" required />
         </div>
         <div class="form-group">
+
             <label asp-for="phoneNumber">Phone Number:</label>
-            <input asp-for="phoneNumber" required/>
+            <input asp-for="phoneNumber" align="bottom" required />
+            </div>
+
         </div>
 
-    </div>
-
-    <div class="float-end">
-        <input class="btn btn-primary" type="submit" value="Confirm Appointment" />
-    </div>
+        <div class="float-end">
+            <input class="btn btn-primary" type="submit" value="Confirm Appointment" />
+        </div>
 
 
 </form>
