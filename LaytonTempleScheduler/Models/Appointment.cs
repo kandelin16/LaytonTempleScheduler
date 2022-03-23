@@ -12,7 +12,7 @@ namespace LaytonTempleScheduler.Models
         [Required]
         public int AppointmentID { get; set; }
         public DateTime TimeSlotStart { get; set; }
-        public TimeSlot TimeSlot { get; set; }
+        //public TimeSlot TimeSlot { get; set; }
 
         [Required(ErrorMessage = "Please enter a group name")]
         public string NameOfGroup { get; set; }

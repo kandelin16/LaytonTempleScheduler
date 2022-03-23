@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LaytonTempleScheduler.Migrations
 {
     [DbContext(typeof(SchedulerContext))]
-    [Migration("20220322214436_initial")]
-    partial class initial
+    [Migration("20220323202354_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,8 +44,6 @@ namespace LaytonTempleScheduler.Migrations
 
                     b.HasKey("AppointmentID");
 
-                    b.HasIndex("TimeSlotStart");
-
                     b.ToTable("Appointments");
                 });
 
@@ -60,15 +58,6 @@ namespace LaytonTempleScheduler.Migrations
                     b.HasKey("Start");
 
                     b.ToTable("TimeSlots");
-                });
-
-            modelBuilder.Entity("LaytonTempleScheduler.Models.Appointment", b =>
-                {
-                    b.HasOne("LaytonTempleScheduler.Models.TimeSlot", "TimeSlot")
-                        .WithMany()
-                        .HasForeignKey("TimeSlotStart")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

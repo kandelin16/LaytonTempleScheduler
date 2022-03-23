@@ -3,22 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LaytonTempleScheduler.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "TimeSlots",
-                columns: table => new
-                {
-                    Start = table.Column<DateTime>(nullable: false),
-                    Available = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TimeSlots", x => x.Start);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Appointments",
                 columns: table => new
@@ -34,18 +22,19 @@ namespace LaytonTempleScheduler.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Appointments", x => x.AppointmentID);
-                    table.ForeignKey(
-                        name: "FK_Appointments_TimeSlots_TimeSlotStart",
-                        column: x => x.TimeSlotStart,
-                        principalTable: "TimeSlots",
-                        principalColumn: "Start",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Appointments_TimeSlotStart",
-                table: "Appointments",
-                column: "TimeSlotStart");
+            migrationBuilder.CreateTable(
+                name: "TimeSlots",
+                columns: table => new
+                {
+                    Start = table.Column<DateTime>(nullable: false),
+                    Available = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TimeSlots", x => x.Start);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

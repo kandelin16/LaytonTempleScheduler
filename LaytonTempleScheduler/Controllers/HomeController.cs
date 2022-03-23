@@ -67,7 +67,7 @@ namespace LaytonTempleScheduler.Controllers
         {
             TimeSlot temp = _service.timeSlots.Where(t => t.Start == DateTime.Parse(timeSlotStart)).First();
             _service.ReserveTimeSlot(temp);
-            a.TimeSlot = temp;
+            //a.TimeSlot = temp;
             _service.AddAppointment(a);
             return View("Confirmation");
         }
